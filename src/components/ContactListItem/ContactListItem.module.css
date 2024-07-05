@@ -1,0 +1,8 @@
+.contactListItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 30px;
+    color: rgb(119, 22, 5);
+    font-weight: bold;
+  }
