@@ -1,23 +1,26 @@
+import React, { useState } from 'react';
 import css from '../Filter/Filter.module.css';
 import PropTypes from 'prop-types';
 
 export const Filter = ({ filter, setFilter }) => {
-  //имя фильтра на основе ключевого слова поиска
-  const handleFilterChange = e => {
-    setFilter(e.target.value);
+  const [value, setValue] = useState(filter);
+
+  const handleChange = e => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    setFilter(newValue);
   };
 
   return (
-    <div className={css.container}>
-      <p>Find Contacts by Name</p>
+    <label className={css.FilterLabel}>
+      Find contacts by name
       <input
         type="text"
-        name="filter"
-        placeholder="Search by name"
-        value={filter}
-        onChange={handleFilterChange}
+        value={value}
+        onChange={handleChange}
+        className={css.FilterInput}
       />
-    </div>
+    </label>
   );
 };
 

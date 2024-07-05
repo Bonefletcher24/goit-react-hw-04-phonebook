@@ -1,15 +1,23 @@
-import { ContactListItem } from '../ContactListItem/ContactListItem';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { ContactListItem } from '../ContactListItem/ContactListItem';
+import css from '../ContactListItem/ContactListItem.module.css';
+
+
 
 export const ContactList = ({ filterContact, deleteContact }) => {
-  const filteredContacts = filterContact();
+  const [contacts, setContacts] = useState([]);
+
+  useEffect(() => {
+    setContacts(filterContact());
+  }, [filterContact]);
 
   return (
-    <ul>
-      {filteredContacts.map(filteredContact => (
+    <ul className={css.ContactList}>
+      {contacts.map(contact => (
         <ContactListItem
-          key={filteredContact.id}
-          filteredContact={filteredContact}
+          key={contact.id}
+          filteredContact={contact}
           deleteContact={deleteContact}
         />
       ))}
@@ -21,3 +29,5 @@ ContactList.propTypes = {
   filterContact: PropTypes.func.isRequired,
   deleteContact: PropTypes.func.isRequired,
 };
+
+export default ContactList;
